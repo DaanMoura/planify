@@ -14,20 +14,24 @@ class _SubjectsTabState extends State<SubjectsTab> {
   ];
 
   final Widget _header = Padding(
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Text(
           "Disciplinas",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 24),
         ),
-        Text("2019/2"),
+        Text(
+          "2019/2",
+          style: TextStyle(fontSize: 16, color: Colors.black54),
+        ),
       ],
     ),
   );
 
-  Widget _buildSubjectTile(int index) {
+  Widget _buildSubjectTile(BuildContext ctx, int index) {
     return ListTile(
       title: Text(_subjectsList[index].nome),
       subtitle: Text(_subjectsList[index].professor),
@@ -45,10 +49,12 @@ class _SubjectsTabState extends State<SubjectsTab> {
         children: <Widget>[
           _header,
           ListView.separated(
+            physics: ClampingScrollPhysics(),
+            shrinkWrap: true,
             separatorBuilder: (c, i) => Divider(),
             itemCount: _subjectsList.length,
-            itemBuilder: (context, index) => _buildSubjectTile(index),
-          )
+            itemBuilder: _buildSubjectTile,
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
