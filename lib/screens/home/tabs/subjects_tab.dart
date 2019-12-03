@@ -8,9 +8,42 @@ class SubjectsTab extends StatefulWidget {
 
 class _SubjectsTabState extends State<SubjectsTab> {
   List<Subject> _subjectsList = [
-    Subject(nome: "Sistemas Operacionais", professor: "Hélio Guardia"),
-    Subject(nome: "Interação Humano-Computador", professor: "Vânia Neris"),
-    Subject(nome: "Redes de Computadores", professor: "Paulo Matias"),
+    Subject(
+      name: "Sistemas Operacionais",
+      teacher: "Hélio Guardia",
+      local: "AT5-98",
+      schedule: [
+        SubjectHour(
+          day: Weekday.Tue,
+          hourBegin: 8,
+          hourEnd: 12,
+        ),
+      ],
+    ),
+    Subject(
+      name: "Interação Humano-Computador",
+      teacher: "Vânia Neris",
+      local: "AT7-168",
+      schedule: [
+        SubjectHour(
+          day: Weekday.Fri,
+          hourBegin: 8,
+          hourEnd: 12,
+        ),
+      ],
+    ),
+    Subject(
+      name: "Redes de Computadores",
+      teacher: "Paulo Matias",
+      local: "DC-LE6",
+      schedule: [
+        SubjectHour(
+          day: Weekday.Thu,
+          hourBegin: 8,
+          hourEnd: 12,
+        ),
+      ],
+    ),
   ];
 
   final Widget _header = Padding(
@@ -33,8 +66,8 @@ class _SubjectsTabState extends State<SubjectsTab> {
 
   Widget _buildSubjectTile(BuildContext ctx, int index) {
     return ListTile(
-      title: Text(_subjectsList[index].nome),
-      subtitle: Text(_subjectsList[index].professor),
+      title: Text(_subjectsList[index].name),
+      subtitle: Text(_subjectsList[index].teacher),
     );
   }
 
